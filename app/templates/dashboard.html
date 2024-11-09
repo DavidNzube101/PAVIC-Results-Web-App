@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAVIC School Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+<body>
+
+    <!-- Hamburger Menu Button for Mobile -->
+    <button class="hamburger-menu md:hidden" onclick="toggleSidebar()">
+        &#9776;
+    </button>
+
+    <nav id="sidebar" class="hidden md:block">
+        <div class="sidebar-head">
+            <img src="{{ url_for('static', filename='public/images/PISlogo.png') }}" alt="Logo">
+            <!-- <h3PAVIC School Manager</h3> -->
+        </div>
+
+        <div class="sidebar-body">
+            <div class="sidebar-navigation" onclick="loadScreen('1')">
+                <img src="{{ url_for('static', filename='public/images/icons8-add-100.png') }}" alt="Add Result">
+                <p>&nbsp;</p>
+                <p>Add Result</p>
+            </div>
+            <div class="sidebar-navigation" onclick="loadScreen('2')">
+                <img src="{{ url_for('static', filename='public/images/icons8-eye-90.png') }}" alt="See Results">
+                <p>&nbsp;</p>
+                <p>See Result</p>
+            </div>
+            <div class="sidebar-navigation" onclick="loadScreen('3')">
+                <img src="{{ url_for('static', filename='public/images/icons8-account-100.png') }}" alt="My Account">
+                <p>&nbsp;</p>
+                <p>My Account</p>
+            </div>
+            <div class="sidebar-navigation" onclick="goToRoute('/davidnzube', ['GET', {}])">
+                <img src="{{ url_for('static', filename='public/images/icons8-developer-100.png') }}" alt="Developer">
+                <p>&nbsp;</p>
+                <p>Developer</p>
+            </div>
+            <div class="sidebar-navigation" onclick="goToRoute('/logout', ['GET', {}])">
+                <img src="{{ url_for('static', filename='public/images/icons8-logout-90.png') }}" alt="Logout">
+                <p>&nbsp;</p>
+                <p>Logout</p>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="default-screen">
+            &nbsp;
+            <div>
+                <h1 align="center" style="font-size: 30px;">PAVIC Results Manager</h1>
+                
+            </div>
+        </section>
+        <section class="screen" id="add-result">
+            <h1 style="font-size: 40px; font-weight: bolder;">Add Result</h1>
+
+            <div class="screen-body">
+
+                <div class="header">
+                    <button onclick="openAddResultModal()" class="btn btn-primary">
+                        + Add a Result
+                    </button>
+                </div>
+                
+                <!-- Add Result Modal -->
+                <div id="addResultModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Add New Result</h3>
+                            <button onclick="closeAddResultModal()" class="modal-close">&times;</button>
+                        </div>
+                        
+                        <form id="resultForm" onsubmit="handleResultSubmit(event)">
+                            <div class="form-group">
+                                <label class="form-label">Student Name</label>
+                                <input type="text" name="studentName" required class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Class</label>
+                                <select name="class" required class="form-select">
+                                    <option value="">Select Class</option>
+                                    <option value="JSS1">JSS1</option>
+                                    <option value="JSS2">JSS2</option>
+                                    <option value="JSS3">JSS3</option>
+                                    <option value="SS1">SS1</option>
+                                    <option value="SS2">SS2</option>
+                                    <option value="SS3">SS3</option>
+                                </select>
+                            </div>
+                    
+                            <div id="subjects">
+                                <div class="subject-entry">
+                                    <label class="form-label">Subject</label>
+                                    <select name="subjects[]" required class="form-select">
+                                        <option value="">Select Subject</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="English">English</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Biology">Biology</option>
+                                    </select>
+                                    
+                                    <div class="grid-3">
+                                        <div>
+                                            <label class="form-label">Pre-Test (30)</label>
+                                            <input type="number" name="preTest[]" max="30" required class="form-input">
+                                        </div>
+                                        <div>
+                                            <label class="form-label">C/A (30)</label>
+                                            <input type="number" name="ca[]" max="30" required class="form-input">
+                                        </div>
+                                        <div>
+                                            <label class="form-label">Exam (40)</label>
+                                            <input type="number" name="exam[]" max="40" required class="form-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <button 
+                                type="button" 
+                                onclick="addSubjectField()"
+                                class="text-white"
+                            >
+                                + Add Another Subject
+                            </button>
+
+                            <div class="form-group">
+                                <label class="form-label">Teacher's Remark</label>
+                                <input type="text" name="teacherRemark" required class="form-input">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button 
+                                    type="button" 
+                                    onclick="closeAddResultModal()"
+                                    class="btn btn-secondary"
+                                >
+                                    Cancel
+                                </button>
+                                <button 
+                                    type="submit"
+                                    class="btn btn-primary"
+                                >
+                                    Save Result
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+                <script>
+                    function openAddResultModal() {
+                        document.getElementById('addResultModal').style.display = 'flex';
+                    }
+                
+                    function closeAddResultModal() {
+                        document.getElementById('addResultModal').style.display = 'none';
+                    }
+                
+                    function addSubjectField() {
+                        const subjectsContainer = document.getElementById('subjects');
+                        const newSubjectEntry = subjectsContainer.children[0].cloneNode(true);
+                        
+                        // Clear input values
+                        newSubjectEntry.querySelectorAll('input, select').forEach(input => {
+                            input.value = '';
+                        });
+                
+                        subjectsContainer.appendChild(newSubjectEntry);
+                    }
+                
+                    function handleResultSubmit(event) {
+                        event.preventDefault();
+                        
+                        const form = document.getElementById('resultForm');
+                        const formData = new FormData(form);
+
+                        // Basic fields
+                        const studentName = formData.get('studentName');
+                        const studentClass = formData.get('class');
+                        const teacherRemark = formData.get('teacherRemark');
+
+                        // Collect subjects as an array of dictionaries
+                        const subjectsContainer = document.getElementById('subjects');
+                        const subjectEntries = subjectsContainer.getElementsByClassName('subject-entry');
+                        const subjects = {};
+
+                        Array.from(subjectEntries).forEach(entry => {
+                            const subject = entry.querySelector('select[name="subjects[]"]').value;
+                            const preTest = entry.querySelector('input[name="preTest[]"]').value;
+                            const ca = entry.querySelector('input[name="ca[]"]').value;
+                            const exam = entry.querySelector('input[name="exam[]"]').value;
+
+                            if (subject) {
+                                subjects[subject] = {
+                                    preTest: Number(preTest),
+                                    ca: Number(ca),
+                                    exam: Number(exam)
+                                };
+                            }
+                        });
+
+                        // Prepare final data object
+                        const data = {
+                            studentName,
+                            class: studentClass,
+                            teacherRemark,
+                            subjects
+                        };
+
+                        // Send data using fetch
+                        fetch('/api/add-results', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                            loadScreen('2')
+                            
+                            closeAddResultModal();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+
+                    // Add event listener to the form
+                    // document.getElementById('resultForm').addEventListener('submit', handleResultSubmit);
+                </script>
+                
+                
+            </div>
+        </section>
+        <section class="screen" id="see-result">
+            <!-- Results Display Section -->
+            <h1 style="font-size: 40px; font-weight: bolder;">See Results</h1>
+
+            <div class="section">
+                <div id="resultsList">
+                    
+                    {% for teacherResult in allTeacherResults['status'][1] %}
+                        <div class="result-item" onclick="goToRoute('/results/{{ teacherResult.results_id }}', ['GET', {}])">
+                            <h3 class="result-header">Student Name: {{ teacherResult.student_name }}</h3>
+                            <p>Class: {{ teacherResult.student_class }}</p>
+                            <!-- <div class="result-subject">
+                                <h4>Subjects and Scores:</h4>
+                                <ul>
+                                    {% for subject, scores in decryptDataType(teacherResult.subject).items() %}
+                                        <li>
+                                            <strong>{{ subject }}:</strong> 
+                                            Pre-Test: {{ scores.preTest }}, 
+                                            C/A: {{ scores.ca }}, 
+                                            Exam: {{ scores.exam }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div> -->
+                            <!-- <p>Teacher ID: {{ teacherResult.teacher_id }}</p> -->
+                            <p>Result ID: {{ teacherResult.results_id }}</p>
+                            <p class="remark">Remark: {{ teacherResult.remark }}</p>
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="screen" id="my-account">
+            <h2>My Account</h2>
+        </section>
+        <section class="screen" id="the-developer">
+            <h2>The Developer</h2>
+        </section>
+    </main>
+
+<script>
+    current_screen = "{{ currentScreen }}"
+    window.onload
+</script>
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('hidden');
+    }
+</script>
+<script src="{{ url_for('static', filename='js/Screen_Manager.js') }}"></script>
+<script src="{{ url_for('static', filename='js/App.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/ModalFlash.js') }}"></script> -->
+</body>
+</html>

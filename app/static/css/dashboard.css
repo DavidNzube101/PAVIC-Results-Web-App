@@ -1,0 +1,362 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+nav{
+    height: 100vh;
+    border-radius: 10px;
+    padding-right: 10px;
+}
+.sidebar-head{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.sidebar-head img{
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
+}
+.sidebar-body{
+    padding: 10px;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    flex-direction: column;
+}
+.sidebar-navigation{
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+.sidebar-navigation:hover{
+    background: rgba(147, 147, 147, 0.2);
+    color: white;
+    cursor: pointer;
+}
+
+
+main{
+    width: 100%;
+
+}
+.screen, .active-screen, .default-screen{
+    height: 100vh;
+    display: none;
+}
+.default-screen{
+    background: url('https://img.freepik.com/free-vector/line-luxury-gradient-color-minimalist-style-wave_483537-3948.jpg?semt=ais_hybrid');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.active-screen, .default-screen{
+    display: block;
+}
+
+#add-result .screen-body{
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 98%;
+}
+
+input{
+    outline: grey;
+    border-radius: 5px;
+    padding: 10px;
+    /* width: 200px; */
+    margin: 10px;
+    background: white;
+    border: 1px solid grey;
+}
+
+button{
+    cursor: cell;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    height: 50px;
+    transition: all 0.5s;
+    width: 200px;
+    color: white;
+    border: 0;
+    font-size: 17px;
+    /* width: 100%; */
+    background: rgb(0, 162, 255);
+}
+button:hover{
+    background: rgb(0, 110, 173);
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+.section {
+    padding: 20px;
+}
+.screen {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.header h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+.btn-secondary {
+    background-color: white;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: white;
+    padding: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 500px;
+    color: black;
+    border-radius: 8px;
+    margin: 20px;
+    width: 100%;
+    max-width: 672px;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6b7280;
+}
+.modal-close:hover {
+    color: #374151;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 16px;
+}
+.form-label {
+    display: block;
+    margin-bottom: 4px;
+}
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+.subject-entry {
+    border: 1px solid #d1d5db;
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.text-blue {
+    color: #2563eb;
+}
+.text-blue:hover {
+    color: #1d4ed8;
+}
+.text-white {
+    color: #ffffff;
+}
+.text-white:hover {
+    color: #dadada;
+}
+.form-actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+
+
+/* Section styles */
+.section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Results list styles */
+#resultsList {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+}
+
+/* Individual result item styles */
+.result-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #747474;
+    border-radius: 5px;
+    background-color: #000000;
+}
+
+/* Add some hover effect for interactivity */
+.result-item:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.sidebar-navigation{
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+.sidebar-navigation img{
+    height: 50px;
+    width: 50px;
+}
+
+.hamburger-menu {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+} 
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .sidebar-navigation{
+        color: white;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        /* justify-content: space-between; */
+    }
+    .sidebar-navigation img{
+        height: 30px;
+        width: 30px;
+    }
+    .default-screen{
+        background: url('https://img.freepik.com/free-photo/calathea-orbifolia-natural-leaves-background_53876-104692.jpg?semt=ais_hybrid');
+        background-size: cover;
+        height: 100vh;
+        font-weight: bolder;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+    }
+    .section {
+        padding: 10px;
+    }
+
+    .result-item {
+        padding: 10px;
+    }
+}
+
+
+/* Hamburger menu button */
+
+
+/* Sidebar styling */
+/* #sidebar { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #1f2937;
+    color: white;
+    padding: 20px;
+    transition: transform 0.3s ease;
+} 
+
+/* Hide the sidebar on small screens, show when toggle is clicked */
+.hidden {
+    display: none;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+    .hamburger-menu {
+        display: none; 
+    }
+    #sidebar {
+        display: block; 
+    }
+}

@@ -1,0 +1,68 @@
+body{
+    box-sizing: border-box;
+    padding: 0;
+    background: linear-gradient(114deg, rgb(0, 162, 255), lightblue);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body div{
+    height: 40%;
+    display: flex;
+    margin: 50px;
+    border-radius: 10px;
+    width: 50%;
+    box-shadow: 1px 1px 20px 3px rgba(0, 0, 0, 0.3);
+    align-items: center;
+    background: linear-gradient(224deg, white, rgb(223, 223, 223));
+    justify-content: space-around;
+}
+body div img{
+    width: 50%;
+}
+body div section{
+    width: 50%;
+    /* font-weight: bolder; */
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+body div section p{
+    width: 80%;
+}
+body div section button{
+    cursor: cell;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    height: 50px;
+    transition: all 0.5s;
+    width: 200px;
+    color: white;
+    border: 0;
+    font-size: 17px;
+    background: rgb(0, 162, 255);
+}
+body div section button:hover{
+    background: rgb(0, 110, 173);
+}
+
+@media only screen and (max-width: 600px) {
+    body div{
+        height: 80%;
+        display: flex;
+        /* margin-right: 50px; */
+        border-radius: 10px;
+        width: 80%;
+        box-shadow: 1px 1px 20px 3px rgba(0, 0, 0, 0.3);
+        align-items: center;
+        background: linear-gradient(224deg, white, rgb(223, 223, 223));
+        flex-direction: column;
+    }
+    body div section p{
+        width: 100%;
+    }
+}

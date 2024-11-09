@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Login to PSM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login-styles.css') }}">
+</head>
+<body>
+    <div>
+        <h2 align="center">Login with your<br>Teacher ID</h2>
+        {% if loginError %}
+            <article class="ErrorModal">
+                <p align="left">{{ loginError }}</p>
+            </article>
+        {% endif %}
+        <form action="/login" method="POST">
+            <input type="text" name="email" placeholder="Teacher's ID Email" required>
+            <!-- <br> -->
+            <input type="password" name="password" placeholder="Teacher's ID Password" required>
+            <button>Login</button>
+        </form>
+    </div>
+
+<script>
+    setTimeout(() => {
+        document.querySelector(".ErrorModal").style.display = "none"
+    }, 3000);
+</script>
+</body>
+</html>
